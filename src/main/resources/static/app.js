@@ -9,7 +9,8 @@ const clearButton = document.querySelector("#clear");
 const translateButton = document.querySelector("#translate");
 const translation = document.querySelector("#translation");
 const status = document.querySelector("#status");
-const uiLanguage = document.querySelector("#ui-language");
+const localeButtons = document.querySelectorAll("[data-locale]");
+let uiLocale = "fa";
 const strings = {
   de: {
     uiLanguage: "Seitensprache",
@@ -84,17 +85,20 @@ let currentStatus = null;
 
 function showStatus(key, error = false, values = {}) {
   currentStatus = { key, error, values };
-  status.textContent = strings[uiLanguage.value][key].replace(
+  status.textContent = strings[uiLocale][key].replace(
     /\{(\w+)\}/g, (_, name) => String(values[name])
   );
   status.dataset.error = String(error);
 }
 
 function updateLocale() {
-  const locale = uiLanguage.value;
+  const locale = uiLocale;
   document.documentElement.lang = locale;
   document.documentElement.dir = locale === "fa" ? "rtl" : "ltr";
   document.title = strings[locale].title;
+  localeButtons.forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.locale === locale));
+  });
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     element.textContent = strings[locale][element.dataset.i18n];
   });
@@ -105,10 +109,15 @@ function updateLocale() {
   }
 }
 
-uiLanguage.addEventListener("change", updateLocale);
+localeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    uiLocale = button.dataset.locale;
+    updateLocale();
+  });
+});
 updateLocale();
 message.addEventListener("invalid", () => {
-  message.setCustomValidity(strings[uiLanguage.value].blank);
+  message.setCustomValidity(strings[uiLocale].blank);
 });
 message.addEventListener("input", () => message.setCustomValidity(""));
 

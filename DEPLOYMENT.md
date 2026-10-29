@@ -48,8 +48,8 @@ Open the HTTPS URL provided by Render. The frontend calls `/ai/chat` on the same
 origin, so no frontend URL changes or CORS settings are required. Microphone
 permission and browser speech recognition support are still required.
 
-The page language selector switches the entire interface between German and
-Persian, including status and error messages. Persian uses right-to-left layout.
+Two small flag buttons switch the entire interface between German and Persian,
+including status and error messages. Persian is the default and uses right-to-left layout.
 The microphone language remains a separate setting; switching the interface
 does not change typed text, translation results, or the selected speech language.
 

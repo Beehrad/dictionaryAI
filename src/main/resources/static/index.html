@@ -1,19 +1,25 @@
 <!doctype html>
-<html lang="de">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Deutsch &harr; Persisch</title>
+  <title>آلمانی ↔ فارسی</title>
   <link rel="stylesheet" href="/styles.css">
   <script src="/app.js" defer></script>
 </head>
 <body>
   <main>
-    <label for="ui-language" data-i18n="uiLanguage">Seitensprache</label>
-    <select id="ui-language">
-      <option value="de" lang="de">Deutsch</option>
-      <option value="fa" lang="fa">فارسی</option>
-    </select>
+    <div id="ui-language-label" class="language-label" data-i18n="uiLanguage">زبان صفحه</div>
+    <div class="language-switch" role="group" aria-labelledby="ui-language-label">
+      <button type="button" class="language-button" data-locale="fa"
+              lang="fa" dir="rtl" aria-pressed="true">
+        <span aria-hidden="true">🇮🇷</span> فارسی
+      </button>
+      <button type="button" class="language-button" data-locale="de"
+              lang="de" dir="ltr" aria-pressed="false">
+        <span aria-hidden="true">🇩🇪</span> Deutsch
+      </button>
+    </div>
     <h1 data-i18n="title">Deutsch &harr; Persisch</h1>
     <p data-i18n="intro">Schreibe oder sprich deinen Text. Die Zielsprache wird automatisch erkannt.</p>
     <form id="translation-form">

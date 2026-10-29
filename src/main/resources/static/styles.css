@@ -20,6 +20,14 @@ main {
 h1 { margin-top: 24px; }
 p { line-height: 1.6; }
 label { display: block; margin: 18px 0 8px; font-weight: 600; }
+.language-label { margin-bottom: 8px; font-weight: 600; }
+.language-switch { display: flex; gap: 8px; }
+.language-button { padding: 6px 10px; font-size: 0.9rem; }
+.language-button[aria-pressed="true"] {
+  border-color: #175cd3;
+  background: #175cd3;
+  color: white;
+}
 
 textarea, select, button {
   font: inherit;
