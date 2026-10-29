@@ -36,6 +36,14 @@ button[type="submit"] { background: #175cd3; color: white; border-color: #175cd3
 button:disabled { opacity: 0.6; cursor: not-allowed; }
 :focus-visible { outline: 3px solid #175cd3; outline-offset: 3px; }
 .hint { font-size: 0.85rem; color: #526174; }
+.attribution {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #eaf0f6;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #526174;
+}
 #status { min-height: 1.6em; }
 #status[data-error="true"] { color: #b42318; }
 #translation { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.8; min-height: 80px; }
