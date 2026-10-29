@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DictionaryTool {
-    @Tool(description = "tarjome farsi, ba mesale kootah")
+    @Tool(description = "ترجمه کن به فارسی با ذکر یک مثال کوتاه")
     public String lookup(String word) {
         return  "Definition of " + word + ": a sample definition.";
     }

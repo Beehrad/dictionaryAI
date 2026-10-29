@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deutsch &harr; Persisch</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Deutsch &harr; Persisch</h1>
+    <p>Schreibe oder sprich deinen Text. Die Zielsprache wird automatisch erkannt.</p>
+    <form id="translation-form">
+      <label for="message">Dein Text</label>
+      <textarea id="message" rows="6" dir="auto" required
+                placeholder="Text auf Deutsch oder Persisch eingeben"></textarea>
+      <label for="language">Sprache f&uuml;r das Mikrofon</label>
+      <select id="language">
+        <option value="de-DE">Deutsch</option>
+        <option value="fa-IR">Persisch</option>
+      </select>
+      <div class="actions">
+        <button id="microphone" type="button">Sprechen</button>
+        <button id="translate" type="submit">&Uuml;bersetzen</button>
+      </div>
+    </form>
+    <p class="hint">Mikrofonzugriff ben&ouml;tigt HTTPS oder localhost und einen
+      unterst&uuml;tzten Browser. Je nach Browser wird deine Sprache von einem
+      externen Dienst verarbeitet. Nur der erkannte Text geht an diese App.</p>
+    <p id="status" role="status" aria-live="polite"></p>
+    <h2>&Uuml;bersetzung</h2>
+    <div id="translation" dir="auto" aria-live="polite"></div>
+  </main>
+</body>
+</html>

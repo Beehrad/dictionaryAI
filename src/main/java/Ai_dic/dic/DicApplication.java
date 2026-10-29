@@ -9,5 +9,4 @@ public class DicApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DicApplication.class, args);
 	}
-
 }
