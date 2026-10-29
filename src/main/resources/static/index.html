@@ -1,50 +1,41 @@
 <!doctype html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>آلمانی ↔ فارسی</title>
+  <title>German &harr; Persian</title>
   <link rel="stylesheet" href="/styles.css">
   <script src="/app.js" defer></script>
 </head>
 <body>
   <main>
-    <div id="ui-language-label" class="language-label" data-i18n="uiLanguage">زبان صفحه</div>
-    <div class="language-switch" role="group" aria-labelledby="ui-language-label">
-      <button type="button" class="language-button" data-locale="fa"
-              lang="fa" dir="rtl" aria-pressed="true">
-        <span aria-hidden="true">🇮🇷</span> فارسی
-      </button>
-      <button type="button" class="language-button" data-locale="de"
-              lang="de" dir="ltr" aria-pressed="false">
-        <span aria-hidden="true">🇩🇪</span> Deutsch
-      </button>
-    </div>
-    <h1 data-i18n="title">Deutsch &harr; Persisch</h1>
-    <p data-i18n="intro">Schreibe oder sprich deinen Text. Die Zielsprache wird automatisch erkannt.</p>
+    <h1>German &harr; Persian</h1>
+    <p>Type or speak your text. The target language is detected automatically.</p>
     <form id="translation-form">
-      <label for="message" data-i18n="message">Dein Text</label>
+      <label for="message">Your text</label>
       <textarea id="message" rows="6" dir="auto" required
-                placeholder="Text auf Deutsch oder Persisch eingeben"></textarea>
-      <label for="language" data-i18n="speechLanguage">Sprache f&uuml;r das Mikrofon</label>
+                placeholder="Enter text in German or Persian"></textarea>
+      <div class="text-tools">
+        <button id="clear" type="button" aria-controls="message translation">Clear</button>
+      </div>
+      <label for="language">Microphone language</label>
       <select id="language">
-        <option value="de-DE" data-i18n="german">Deutsch</option>
-        <option value="fa-IR" data-i18n="persian">Persisch</option>
+        <option value="de-DE">German</option>
+        <option value="fa-IR">Persian</option>
       </select>
       <div class="actions">
-        <button id="microphone" type="button" data-i18n="speak">Sprechen</button>
-        <button id="stop-microphone" type="button" data-i18n="stop" disabled>Aufnahme stoppen</button>
-        <button id="translate" type="submit" data-i18n="translate">&Uuml;bersetzen</button>
-        <button id="clear" type="button" data-i18n="clear">Leeren</button>
+        <button id="microphone" type="button">Speak</button>
+        <button id="stop-microphone" type="button" disabled>Stop recording</button>
+        <button id="translate" type="submit">Translate</button>
       </div>
     </form>
-    <p class="hint" data-i18n="privacy">Mikrofonzugriff ben&ouml;tigt HTTPS oder localhost und einen
-      unterst&uuml;tzten Browser. Je nach Browser wird deine Sprache von einem
-      externen Dienst verarbeitet. Nur der erkannte Text geht an diese App.</p>
+    <p class="hint">Microphone access requires HTTPS or localhost and a supported browser.
+      Depending on your browser, an external service may process your audio.
+      Only the recognized text is sent to this app.</p>
     <p id="status" role="status" aria-live="polite"></p>
-    <h2 data-i18n="translation">&Uuml;bersetzung</h2>
+    <h2>Translation</h2>
     <div id="translation" dir="auto" aria-live="polite"></div>
-    <footer class="attribution" data-i18n="attribution">Powered by Behrad</footer>
+    <footer class="attribution">Powered by Behrad</footer>
   </main>
 </body>
 </html>

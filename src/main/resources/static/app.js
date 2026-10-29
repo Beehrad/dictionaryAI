@@ -9,115 +9,37 @@ const clearButton = document.querySelector("#clear");
 const translateButton = document.querySelector("#translate");
 const translation = document.querySelector("#translation");
 const status = document.querySelector("#status");
-const localeButtons = document.querySelectorAll("[data-locale]");
-let uiLocale = "fa";
 const strings = {
-  de: {
-    uiLanguage: "Seitensprache",
-    title: "Deutsch ↔ Persisch",
-    intro: "Schreibe oder sprich deinen Text. Die Zielsprache wird automatisch erkannt.",
-    message: "Dein Text",
-    placeholder: "Text auf Deutsch oder Persisch eingeben",
-    speechLanguage: "Sprache für das Mikrofon",
-    german: "Deutsch",
-    persian: "Persisch",
-    speak: "Sprechen",
-    stop: "Aufnahme stoppen",
-    clear: "Leeren",
-    translate: "Übersetzen",
-    translation: "Übersetzung",
-    attribution: "Powered by Behrad",
-    privacy: "Mikrofonzugriff benötigt HTTPS oder localhost und einen unterstützten Browser. Je nach Browser wird deine Sprache von einem externen Dienst verarbeitet. Nur der erkannte Text geht an diese App.",
-    blank: "Bitte zuerst einen Text eingeben oder sprechen.",
-    translating: "Wird übersetzt ...",
-    complete: "Übersetzung fertig.",
-    serverError: "Übersetzung fehlgeschlagen: Server meldet HTTP {code}.",
-    emptyResponse: "Der Server hat keine Übersetzung geliefert.",
-    requestError: "Übersetzung fehlgeschlagen. Prüfe deine Verbindung und versuche es erneut.",
-    timeout: "Die Übersetzung dauert zu lange. Bitte erneut versuchen.",
-    listening: "Bitte jetzt sprechen ...",
-    microphoneError: "Mikrofon konnte nicht starten. Prüfe die Berechtigung und versuche es erneut.",
-    speechError: "Spracherkennung fehlgeschlagen. Bitte erneut versuchen oder Text eingeben.",
-    permissionError: "Mikrofonzugriff nicht erlaubt. Prüfe die Berechtigung im Browser oder gib Text ein.",
-    speechNetworkError: "Der Spracherkennungsdienst ist nicht erreichbar. Prüfe deine Verbindung oder gib Text ein.",
-    speechLanguageError: "Diese Sprache wird von der Spracherkennung nicht unterstützt. Bitte Text eingeben.",
-    noSpeech: "Keine Sprache erkannt. Bitte erneut versuchen oder Text eingeben.",
-    unavailable: "Mikrofon nicht verfügbar. Nutze einen Browser mit Spracherkennung auf HTTPS oder localhost. Texteingabe funktioniert weiterhin."
-  },
-  fa: {
-    uiLanguage: "زبان صفحه",
-    title: "آلمانی ↔ فارسی",
-    intro: "متن خود را بنویسید یا بگویید. زبان مقصد به‌صورت خودکار تشخیص داده می‌شود.",
-    message: "متن شما",
-    placeholder: "متن را به آلمانی یا فارسی وارد کنید",
-    speechLanguage: "زبان گفتار برای میکروفون",
-    german: "آلمانی",
-    persian: "فارسی",
-    speak: "صحبت کنید",
-    stop: "توقف ضبط",
-    clear: "پاک کردن",
-    translate: "ترجمه کنید",
-    translation: "ترجمه",
-    attribution: "قدرت‌گرفته از بهراد",
-    privacy: "دسترسی به میکروفون به HTTPS یا localhost و مرورگر سازگار نیاز دارد. بسته به مرورگر، صدای شما ممکن است توسط یک سرویس خارجی پردازش شود. فقط متن تشخیص‌داده‌شده به این برنامه ارسال می‌شود.",
-    blank: "ابتدا متنی بنویسید یا صحبت کنید.",
-    translating: "در حال ترجمه ...",
-    complete: "ترجمه آماده است.",
-    serverError: "ترجمه ناموفق بود. کد خطای سرور: {code}.",
-    emptyResponse: "سرور ترجمه‌ای برنگرداند.",
-    requestError: "ترجمه ناموفق بود. اتصال اینترنت خود را بررسی کنید و دوباره تلاش کنید.",
-    timeout: "ترجمه بیش از حد طول کشید. لطفاً دوباره تلاش کنید.",
-    listening: "لطفاً اکنون صحبت کنید ...",
-    microphoneError: "میکروفون شروع به کار نکرد. مجوز دسترسی را بررسی کنید و دوباره تلاش کنید.",
-    speechError: "تشخیص گفتار ناموفق بود. دوباره تلاش کنید یا متن را بنویسید.",
-    permissionError: "دسترسی به میکروفون مجاز نیست. مجوز مرورگر را بررسی کنید یا متن را بنویسید.",
-    speechNetworkError: "سرویس تشخیص گفتار در دسترس نیست. اتصال اینترنت را بررسی کنید یا متن را بنویسید.",
-    speechLanguageError: "تشخیص گفتار از این زبان پشتیبانی نمی‌کند. لطفاً متن را بنویسید.",
-    noSpeech: "گفتاری تشخیص داده نشد. دوباره تلاش کنید یا متن را بنویسید.",
-    unavailable: "میکروفون در دسترس نیست. از مرورگری با قابلیت تشخیص گفتار روی HTTPS یا localhost استفاده کنید. همچنان می‌توانید متن را بنویسید."
-  }
+  blank: "Please type or speak some text first.",
+  translating: "Translating ...",
+  complete: "Translation ready.",
+  serverError: "Translation failed: the server returned HTTP {code}.",
+  emptyResponse: "The server returned no translation.",
+  requestError: "Translation failed. Check your connection and try again.",
+  timeout: "Translation took too long. Please try again.",
+  listening: "Please speak now ...",
+  microphoneError: "Could not start the microphone. Check its permission and try again.",
+  speechError: "Speech recognition failed. Try again or type your text.",
+  permissionError: "Microphone access was denied. Check your browser permissions or type your text.",
+  speechNetworkError: "The speech recognition service is unavailable. Check your connection or type your text.",
+  speechLanguageError: "Speech recognition does not support this language. Please type your text.",
+  noSpeech: "No speech detected. Try again or type your text.",
+  unavailable: "Microphone unavailable. Use a browser with speech recognition on HTTPS or localhost. You can still type your text."
 };
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const canRecord = Boolean(SpeechRecognition) && window.isSecureContext;
 let recording = false;
 let translating = false;
-let currentStatus = null;
 
 function showStatus(key, error = false, values = {}) {
-  currentStatus = { key, error, values };
-  status.textContent = strings[uiLocale][key].replace(
+  status.textContent = strings[key].replace(
     /\{(\w+)\}/g, (_, name) => String(values[name])
   );
   status.dataset.error = String(error);
 }
 
-function updateLocale() {
-  const locale = uiLocale;
-  document.documentElement.lang = locale;
-  document.documentElement.dir = locale === "fa" ? "rtl" : "ltr";
-  document.title = strings[locale].title;
-  localeButtons.forEach((button) => {
-    button.setAttribute("aria-pressed", String(button.dataset.locale === locale));
-  });
-  document.querySelectorAll("[data-i18n]").forEach((element) => {
-    element.textContent = strings[locale][element.dataset.i18n];
-  });
-  message.placeholder = strings[locale].placeholder;
-  message.setCustomValidity("");
-  if (currentStatus) {
-    showStatus(currentStatus.key, currentStatus.error, currentStatus.values);
-  }
-}
-
-localeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    uiLocale = button.dataset.locale;
-    updateLocale();
-  });
-});
-updateLocale();
 message.addEventListener("invalid", () => {
-  message.setCustomValidity(strings[uiLocale].blank);
+  message.setCustomValidity(strings.blank);
 });
 message.addEventListener("input", () => message.setCustomValidity(""));
 
@@ -181,7 +103,6 @@ clearButton.addEventListener("click", () => {
   message.value = "";
   message.setCustomValidity("");
   translation.textContent = "";
-  currentStatus = null;
   status.textContent = "";
   status.dataset.error = "false";
   message.focus();
