@@ -48,6 +48,16 @@ Open the HTTPS URL provided by Render. The frontend calls `/ai/chat` on the same
 origin, so no frontend URL changes or CORS settings are required. Microphone
 permission and browser speech recognition support are still required.
 
+The page language selector switches the entire interface between German and
+Persian, including status and error messages. Persian uses right-to-left layout.
+The microphone language remains a separate setting; switching the interface
+does not change typed text, translation results, or the selected speech language.
+
+"Leeren" clears the input, translation, and status message while idle.
+Speech recording stops explicitly when speech ends or a result arrives, and
+after at most 15 seconds a stop is requested. "Aufnahme stoppen" also ends it
+manually. Translation starts after the recognition service reports completion.
+
 The `/` health check verifies the web app, not Gemini credentials or quota.
 Send a translation after deployment to verify the model integration.
 
